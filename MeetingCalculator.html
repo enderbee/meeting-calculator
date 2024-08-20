@@ -1,0 +1,184 @@
+<! --
+# SPDX-License-Identifier: GPL-3.0-only
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2,
+# or at your option, GNU General Public License version 3,
+# as published by the Free Software Foundation
+This little piece of code was fastly written just to serve the purpose of creating awareness about what meetings costs.
+-->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Meeting Calculator</title>
+</head>
+<style>
+  .container {
+    display: block;
+    width: 100%;
+    font-family: Roboto, Helvetica, sans-serif;
+  }
+
+  .header {
+    display: block;
+    color:white;
+    font-weight: normal;
+    font-size: 20px;
+    width: 560px;
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: #074320;
+  }
+  .buttonbar {
+    display: block;
+    color:white;
+    width: 540px;
+    padding: 30px;
+    padding-top: 10px;
+    border: none;
+    text-align: center;
+    background-color: #A1DDBA;
+  }
+ .status {
+    display: block;
+    color: white;
+    width: 560px;
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: #4D4D4D;
+  }
+ .display {
+    display: block;
+    font-size: 400%;
+    color: white;
+    width: 560px;
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: #11AB51;
+  }
+  .row {
+    display: block;
+    width: 100%;
+  }
+  .cell {
+    display: inline-block;
+    width: 33%;
+    padding: 10px;
+    border: none;
+    text-align: left;
+    background-color: #11AB51;	
+  }
+  .row:first-child > .cell {
+    font-weight: bold;
+    background-color: #11AB51;
+  }
+ .button {
+   background-color:#7ACF9E; 
+   border: 1px solid black;
+   border-radius: 4px;
+   color: white;
+   float: left;
+   width: 200px
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 18px;
+   transition-duration: 0.4s;
+
+  }
+
+  .button:hover {
+  background-color: #04AA6D; 
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  color: black;
+ }
+
+ .button:active {
+  background-color: #052B15;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+  input[type=text] {text-align:right;}
+  input[type=button] {padding: 5px; }
+</style>
+<body>
+
+<form name="calculator">
+<div class="container">
+<div class="header">Your Meeting Calculator</div>
+<div class="row">
+    <div class="cell">Number of participants</div>
+  <div class="cell"><input name="participants" id="participants" type="text" value="2" /></div>
+</div>
+<div class="row">
+    <div class="cell">Duration in minutes</div>
+  <div class="cell"><input name="minutes" id="minutes" type="text"/>
+</div>
+<div class="buttonbar">
+<input type="button" class= "button" value="Start/Continue" onClick="startTimer()">&nbsp;&nbsp;&nbsp;<input type="button" class= "button" value="Halt" onClick="stopTimer()">&nbsp;&nbsp;&nbsp;<input type="button" class= "button" value="Manual Calculation" onClick="calcCosts()">&nbsp;&nbsp;&nbsp;
+<input type="button" class= "button" value="Reset" onClick="resetTimer()">
+</div>
+<div class="display" id ="costs">0
+</div>
+
+<div class="status" id ="status">
+No Status
+</div>
+
+</div>
+
+</form>
+
+<script language="JavaScript">
+//This is the the cost per minute we set here, based on costs of 450€/day
+const PPM = 0.93;
+
+//Setting some global values and vars
+document.getElementById("minutes").value = 0;
+document.getElementById("status").innerHTML= "Waiting for you to press Start/Continue..."
+document.getElementById("costs").innerHTML = "0€"
+var runs = false;
+
+// Here we actually trigger (re)calculation   
+function setTimer() {
+  timeRunning = parseFloat(document.getElementById("minutes").value);
+  timeRunning += 1;
+  document.getElementById("minutes").value = timeRunning;  
+  if (runs) { 
+      setTimeout(setTimer, 60000);
+      calcCosts();	
+  }; 
+}
+
+function startTimer() {
+  runs = true;
+  setTimer();
+  document.getElementById("status").innerHTML= "Counting Time (will update minute by minute) ..."
+}
+ 
+function stopTimer() {
+  runs = false;
+  document.getElementById("status").innerHTML= "Paused Counting"
+}
+
+// This is where we really calculate 
+function calcCosts(){
+	var p = parseFloat(document.getElementById("participants").value);
+	var m = parseFloat(document.getElementById("minutes").value);
+	document.getElementById("costs").innerHTML = (p * m * PPM).toFixed(2) + "€";
+}
+function resetTimer() {
+  runs = false;
+  document.getElementById("status").innerHTML= "Waiting for you to press Start/Continue..."
+  document.getElementById("minutes").value = 0;
+  document.getElementById("costs").innerHTML = "0€"
+}
+
+
+</script>
+</body>
+	
+</html>
