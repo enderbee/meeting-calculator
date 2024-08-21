@@ -13,125 +13,119 @@ This little piece of code was fastly written just to serve the purpose of creati
 <title>Meeting Calculator</title>
 </head>
 <style>
-  .container {
-    display: block;
-    width: 560px;
-    font-family: Roboto, Helvetica, sans-serif;
-    background-color: #11AB51;	
+    .container {
+        display: block;
+        width: 560px;
+        font-family: Roboto, Helvetica, sans-serif;
+        background-color: #11AB51;	
   }
-
-  .header {
-    display: block;
-    color:white;
-    font-weight: normal;
-    font-size: 20px;
-    width: 520px;
-    padding: 20px;
-    border: 1px solid black;
-    text-align: center;
-    background-color: #074320;
+    .header {
+        display: block;
+        color:white;
+        font-weight: normal;
+        font-size: 20px;
+        width: 520px;
+        padding: 20px;
+        border: 1px solid black;
+        text-align: center;
+        background-color: #4D4D4D;
   }
-  .buttonbar {
-    display: block;
-    color:white;
-    width: 500px;
-    padding: 30px;
-    padding-top: 10px;
-    border: none;
-    text-align: center;
-    background-color: #A1DDBA;
+    .buttonbar {
+        display: block;
+        color:white;
+        width: 500px;
+        padding: 30px;
+        padding-top: 10px;
+        padding-bottom: 50px;
+        border: none;
+        text-align: center;
+        background-color: #4D4D4D;
   }
- .status {
-    display: block;
-    color: white;
-    width: 520px;
-    padding: 20px;
-    border: 1px solid black;
-    text-align: center;
-    background-color: #4D4D4D;
+     .status {
+        display: block;
+        color: white;
+        width: 520px;
+        padding: 20px;
+        border: 1px solid black;
+        text-align: center;
+        background-color: #4D4D4D;
   }
- .display {
-    display: block;
-    font-size: 400%;
-    color: white;
-    width: 520px;
-    padding: 20px;
-    border: 1px solid black;
-    text-align: center;
-    background-color: #11AB51;
+    .display {
+        display: block;
+        font-size: 400%;
+        color: white;
+        width: 520px;
+        padding: 20px;
+        border: 1px solid black;
+        text-align: center;
+        background-color: #11AB51;
   }
   .row {
-    display: block;
-    width: 640px;
+        display: block;
+        width: 640px;
   }
-  .cell {
-    display: inline-block;
-    width: 33%;
-    padding: 10px;
-    border: none;
-    text-align: left;
-    background-color: #11AB51;	
+    .cell {
+        display: inline-block;
+        width: 33%;
+        padding: 10px;
+        border: none;
+        text-align: left;
+        background-color: #11AB51;	
   }
-  .row:first-child > .cell {
-    font-weight: bold;
-    background-color: #11AB51;
+    .row:first-child > .cell {
+        font-weight: bold;
+        background-color: #11AB51;
   }
- .button {
-   background-color:#7ACF9E; 
-   border: 1px solid black;
-   border-radius: 4px;
-   color: white;
-   float: left;
-   width: 200px
-   text-align: center;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 18px;
-   transition-duration: 0.4s;
+    .button {
+        background-color: #04AA6D; 
+        border: 1px solid black;
+        border-radius: 4px;
+        color: white;
+        float: left;
+        width: 200px
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        transition-duration: 0.4s;
+  }
 
-  }
-
-  .button:hover {
-  background-color: #04AA6D; 
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  color: black;
+    .button:hover {
+        background-color:#7ACF9E;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        color: black;
  }
 
- .button:active {
-  background-color: #052B15;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+    .button:active {
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
 }
-  input[type=text] {text-align:right;}
-  input[type=button] {padding: 5px; }
+    input[type=text] {text-align:right;}
+    input[type=button] {padding: 5px; }
 </style>
 <body>
 
-<form name="calculator">
-<div class="container">
-<div class="header">Your Meeting Calculator</div>
-<div class="row">
-    <div class="cell">Number of participants</div>
-  <div class="cell"><input name="participants" id="participants" type="text" value="2" /></div>
-</div>
-<div class="row">
-    <div class="cell">Duration in minutes</div>
-  <div class="cell"><input name="minutes" id="minutes" type="text"/>
-</div>
-<div class="buttonbar">
-<input type="button" class= "button" value="Start/Continue" onClick="startTimer()">&nbsp;&nbsp;&nbsp;<input type="button" class= "button" value="Halt" onClick="stopTimer()">&nbsp;&nbsp;&nbsp;<input type="button" class= "button" value="Manual Calculation" onClick="calcCosts()">&nbsp;&nbsp;&nbsp;
-<input type="button" class= "button" value="Reset" onClick="resetTimer()">
-</div>
-<div class="display" id ="costs">0
-</div>
-
-<div class="status" id ="status">
-No Status
-</div>
-
-</div>
-
-</form>
+    <form name="calculator">
+        <div class="container">
+        <div class="header">Your Meeting Calculator</div>
+        <div class="row">
+            <div class="cell">Number of participants</div>
+          <div class="cell"><input name="participants" id="participants" type="text" value="2" /></div>
+        </div>
+        <div class="row">
+            <div class="cell">Duration in minutes</div>
+            <div class="cell"><input name="minutes" id="minutes" type="text"/>
+        </div>
+        <div class="buttonbar">
+            <input type="button" class= "button" value="Start/Continue" onClick="startTimer()">
+            <input type="button" class= "button" value="Halt" onClick="stopTimer()">
+            <input type="button" class= "button" value="Manual Calculation" onClick="calcCosts()">
+            <input type="button" class= "button" value="Reset" onClick="resetTimer()">
+        </div>
+        <div class="display" id ="costs">0</div>
+        <div class="status" id ="status">No Status</div>
+        </div>
+    </form>
 
 <script language="JavaScript">
 //This is the the cost per minute we set here, based on costs of 450€/day
